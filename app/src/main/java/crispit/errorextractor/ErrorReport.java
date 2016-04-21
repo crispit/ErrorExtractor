@@ -9,12 +9,14 @@ public class ErrorReport {
     private String comment;
     private String pubdate;
     private int grade;
+    private String busid;
 
-    public ErrorReport(String id, String symptom, String comment, String pubdate, int grade){
+    public ErrorReport(String id, String symptom, String comment, String busid, String pubdate, int grade){
 
         this.id = id;
         this.symptom = symptom;
         this.comment = comment;
+        this.busid = busid;
         this.pubdate = pubdate;
         this.grade = grade;
 
@@ -59,6 +61,11 @@ public class ErrorReport {
     public void setGrade(int grade) {
         this.grade = grade;
     }
+    public void setBusid(String id){
+        this.busid = id;
+    }
+    public String getBusid(){
+        return busid;
+    }
 
 }
-

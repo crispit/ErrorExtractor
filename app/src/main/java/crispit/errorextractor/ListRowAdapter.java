@@ -72,6 +72,14 @@ public class ListRowAdapter extends ArrayAdapter<ErrorReport> {
             holder.errorDate.setText(Html.fromHtml(er.getPubdate()));
         }
 
+        //here set your color as per position
+
+        if (position%2 == 0) {
+            view.setBackgroundResource(R.drawable.list_bg_even);
+        } else if (position%2 == 1) {
+            view.setBackgroundResource(R.drawable.list_bg_odd);
+        }
+
         return view;
     }
 

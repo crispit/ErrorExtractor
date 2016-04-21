@@ -18,23 +18,20 @@ public class BusInfo extends AppCompatActivity {
 
     ArrayList<ErrorReport> errorList;
     ListView listView;
+    DbHelper mydb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_businfo);
 
-        errorList = createErrorList();
+        String busId = getIntent().getStringExtra("busId");
+
+        mydb = new DbHelper(this);
+        errorList = mydb.getBusReports(busId);
 
         listView = (ListView) findViewById(R.id.businfoview);
         setAdapterToListview();
-
-        //mydb = new ErrorDbHelper(this);
-        //arrayOfList = mydb.getErrorReports(busId);
-        //TODO: Skapa en metod i DbHelper som returnerar en lista med alla errorreports för bussen
-
-
-
     }
 
     public void setAdapterToListview() {
@@ -47,10 +44,14 @@ public class BusInfo extends AppCompatActivity {
     public ArrayList<ErrorReport> createErrorList(){
 
         ArrayList<ErrorReport> list = new ArrayList<>();
-        ErrorReport er1 = new ErrorReport("Buss 1", "Trasig Vindruta", "En stor spricka genom hela rutan.", "2016-04-20", 4);
-        ErrorReport er2 = new ErrorReport("Buss 4", "Punktering", "Det bara small. Står parkerad nere vid Frihamnen.", "2016-04-22", 5);
-        list.add(er1);
-        list.add(er2);
+        //ErrorReport er1 = new ErrorReport("Buss 1", "Trasig Vindruta", "En stor spricka genom hela rutan.", "2016-04-20", 4);
+        //ErrorReport er4 = new ErrorReport("Buss 2", "Trasig Motor", "Inte najs", "2016-03-05", 2);
+        //ErrorReport er2 = new ErrorReport("Buss 4", "Punktering", "Det bara small. Står parkerad nere vid Frihamnen.", "2016-04-22", 5);
+        //ErrorReport er3 = new ErrorReport("Buss 5", "Trasiga dörrar som är helt jävla paj. Fattar ingenting ju. Knas kalas.", "BAKALALALALDLLALALALALALFLFSKJSFKAJBKJAFBAFWJKFEKJAEFKJAEFBJAFEJBKFBJKFAEKAEFBJKAEFBJKAFJBKAEFJBAFEBJKAFEBJAEFAAFBAAFEBJAEFFEABFAEKFEKEAFJAFAEFJBKAEF jkEFJKBAEFJKBAEFKJBAEGegihweoiwgionwekjegjkegbjksgkjbsjbksbglwoegoiwgebsjkdfbjksbgbkskeugbsjbksjbkegkjsgbuk", "2016-04-22", 5);
+        //list.add(er1);
+        //list.add(er2);
+        //list.add(er3);
+        //list.add(er4);
         return list;
     }
 }
