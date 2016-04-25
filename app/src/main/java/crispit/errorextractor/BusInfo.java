@@ -1,7 +1,10 @@
 package crispit.errorextractor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -11,9 +14,6 @@ import java.util.ArrayList;
  */
 public class BusInfo extends AppCompatActivity {
 
-    //Rubrik med allvarlighetsgrad
-    //Lista med zon, gradering, symptom, kommentar
-    //Lista i lista
     //Sortera efter gradering, allvarligast först
 
     ArrayList<ErrorReport> errorList;
@@ -32,6 +32,18 @@ public class BusInfo extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.businfoview);
         setAdapterToListview();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                Intent intent = new Intent(view.getContext(), DetailedErrorReport.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("errorId", errorList.get(position).getId());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+        });
     }
 
     public void setAdapterToListview() {

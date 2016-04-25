@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Error Extractor</string>
     <string name="busInfo">Bus Info</string>
+    <string name="detailedErrorReport">Detailed Error Report</string>
 </resources>
