@@ -10,7 +10,7 @@ package crispit.errorextractor;
 /**
  * Created by fredrikhansson on 4/18/16.
  */
-public class DbHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper{
 
     //Oföränderliga strängar som används till skapande av databasen
     public static final String TABLE_NAME = "ErrorReport";
@@ -123,7 +123,7 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "Database.db";
 
     //konstruktor
-    public DbHelper(Context context){
+    public DBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -161,7 +161,7 @@ public class DbHelper extends SQLiteOpenHelper{
                                      String driver_Cabin_Temperature, String fms_Sw_Version_Supported, String gps, String gps2,
                                      String gps_nmea, String journey_Info, String mobile_Network_Cell_Info, String mobile_Network_Signal_Strength,
                                      String next_Stop, String offroute, String online_Users, String opendoor, String position_Of_Doors,
-                                     String ramp_Wheel_Chair_Lift, String status_2_Of_Doors, String stop_Pressed, String stop_Request,
+                                     String pram_Request, String ramp_Wheel_Chair_Lift, String status_2_Of_Doors, String stop_Pressed, String stop_Request,
                                      String total_Vehicle_Distance, String turn_Signals, String wlan_Connectivity){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -188,6 +188,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put("Online_Users", online_Users);
         contentValues.put("Opendoor", opendoor);
         contentValues.put("Position_Of_Doors", position_Of_Doors);
+        contentValues.put("Pram_Request", pram_Request);
         contentValues.put("Ramp_Wheel_Chair_Lift", ramp_Wheel_Chair_Lift);
         contentValues.put("Status_2_Of_Doors", status_2_Of_Doors);
         contentValues.put("Stop_Pressed", stop_Pressed);

@@ -34,9 +34,6 @@ public class BusData {
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 con.getInputStream()));
 
-        System.out.println((new InputStreamReader(
-                con.getInputStream())).read());
-
         String inputLine;
 
 

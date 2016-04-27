@@ -18,7 +18,7 @@ public class BusInfo extends AppCompatActivity {
 
     ArrayList<ErrorReport> errorList;
     ListView listView;
-    DbHelper mydb;
+    DBHelper mydb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class BusInfo extends AppCompatActivity {
 
         String busId = getIntent().getStringExtra("busId");
 
-        mydb = new DbHelper(this);
+        mydb = new DBHelper(this);
         errorList = mydb.getBusReports(busId);
 
         listView = (ListView) findViewById(R.id.businfoview);
