@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="crispit.errorextractor">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:sharedUserId="my.app" package="crispit.errorextractor">
 
     <application
         android:allowBackup="true"
