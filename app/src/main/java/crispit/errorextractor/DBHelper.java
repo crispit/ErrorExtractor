@@ -231,8 +231,28 @@ public class DBHelper extends SQLiteOpenHelper{
         }
         return array_list;
     }
+//Metod för att visa lista med felrapporter
+    public ArrayList<ErrorReport> getAllReportsDetailed() {
+        ArrayList<ErrorReport> array_list = new ArrayList<>();
 
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from ErrorReport", null);
+        res.moveToFirst();
 
+        while (res.isAfterLast() == false) {
+
+            ErrorReport er = new ErrorReport(res.getString(res.getColumnIndex(COLUMN_NAME_ENTRYID)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_SYMPTOM)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_COMMENT)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_BUSID)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_DATE)),
+                    res.getInt(res.getColumnIndex(COLUMN_NAME_GRADE)));
+            array_list.add(er);
+            res.moveToNext();
+        }
+        return array_list;
+    }
     /**
      * Metod fˆr att returnera alla unika bussar (med fel)
      * @return arraylist med bussar som har felrapporter
