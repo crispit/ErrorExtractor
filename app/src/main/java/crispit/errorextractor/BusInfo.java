@@ -51,19 +51,4 @@ public class BusInfo extends AppCompatActivity {
                 R.layout.row, errorList);
         listView.setAdapter(objAdapter);
     }
-
-    //testmetod som skapar en lista med errorreports
-    public ArrayList<ErrorReport> createErrorList(){
-
-        ArrayList<ErrorReport> list = new ArrayList<>();
-        //ErrorReport er1 = new ErrorReport("Buss 1", "Trasig Vindruta", "En stor spricka genom hela rutan.", "2016-04-20", 4);
-        //ErrorReport er4 = new ErrorReport("Buss 2", "Trasig Motor", "Inte najs", "2016-03-05", 2);
-        //ErrorReport er2 = new ErrorReport("Buss 4", "Punktering", "Det bara small. Står parkerad nere vid Frihamnen.", "2016-04-22", 5);
-        //ErrorReport er3 = new ErrorReport("Buss 5", "Trasiga dörrar som är helt jävla paj. Fattar ingenting ju. Knas kalas.", "BAKALALALALDLLALALALALALFLFSKJSFKAJBKJAFBAFWJKFEKJAEFKJAEFBJAFEJBKFBJKFAEKAEFBJKAEFBJKAFJBKAEFJBAFEBJKAFEBJAEFAAFBAAFEBJAEFFEABFAEKFEKEAFJAFAEFJBKAEF jkEFJKBAEFJKBAEFKJBAEGegihweoiwgionwekjegjkegbjksgkjbsjbksbglwoegoiwgebsjkdfbjksbgbkskeugbsjbksjbkegkjsgbuk", "2016-04-22", 5);
-        //list.add(er1);
-        //list.add(er2);
-        //list.add(er3);
-        //list.add(er4);
-        return list;
-    }
 }
