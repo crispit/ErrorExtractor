@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.widget.Button;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -28,7 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Collections.sort(errorList, new Comparator<ErrorReport>() {
                 @Override
                 public int compare(ErrorReport report1, ErrorReport report2) {
-                    return (report1.getPubdate().compareTo(report2.getPubdate()))*(-1);
+                    DateFormat format = new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss", Locale.ENGLISH);
+                    Date date1=null;
+                    Date date2=null;
+                    try {
+                        date1 = format.parse(report1.getPubdate());
+                        date2 = format.parse(report2.getPubdate());
+                    }
+                    catch(ParseException e){
+
+                    }
+
+                    return (date1.compareTo(date2)) * (-1);
 
                 }
             });
