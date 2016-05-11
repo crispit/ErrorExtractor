@@ -207,6 +207,26 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     /**
+     * Metod fˆr att radera en felrapport med ett specifikt errorId
+     * @param errorId unique ID for the error report which to update
+     * @param grade the updated urgency of the error
+     * @param symptom the updated symptom of the error
+     * @param symptom the updated comment of the error
+     */
+    public void updateErrorReport(String errorId, String grade, String symptom, String comment, String status){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Grade", grade);
+        contentValues.put("Symptom", symptom);
+        contentValues.put("Comment", comment);
+        contentValues.put("Status", status);
+
+        db.update("ErrorReport", contentValues, "errorId = ? ", new String[]{errorId});
+
+    }
+
+    /**
      * Metod fˆr att hitta alla felraporten fˆr en specifik buss
      * @param busID id fˆr att identifiera en specifik buss
      */
