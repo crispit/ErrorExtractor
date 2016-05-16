@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.widget.Button;
+import android.widget.TextView;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String busId;
     ListRowAdapter objAdapter;
     int sortState = 1;
+
     @Override
     public void onClick(View view) {
         if(sortState == 2) {
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
             objAdapter.notifyDataSetChanged();
             sortState=1;
+            TextView sortText = (TextView)findViewById(R.id.sortText);
+           sortText.setText("Rapportdatum ▲");
         }
         else if(sortState == 1){
             Collections.sort(errorList, new Comparator<ErrorReport>() {
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
             objAdapter.notifyDataSetChanged();
             sortState=2;
+            TextView sortText = (TextView)findViewById(R.id.sortText);
+            sortText.setText("Grad ▲");
         }
 
     }
