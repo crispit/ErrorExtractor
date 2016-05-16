@@ -271,7 +271,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from ErrorReport", null);
+        Cursor res = db.rawQuery("select * from ErrorReport where NOT Status = 'fixed'", null);
         res.moveToFirst();
 
         while (res.isAfterLast() == false) {
