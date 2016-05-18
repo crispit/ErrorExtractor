@@ -21,42 +21,24 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     ListView listView ;
     private Button sortButton;
+    Button updateButton;
     DBHelper mydb;
     private ArrayList<ErrorReport> errorList;
     String busId;
     ListRowAdapter objAdapter;
     int sortState = 1;
 
-    @Override
-    public void onClick(View view) {
+    public void sort(View view) {
+
         if(sortState == 2) {
-            Collections.sort(errorList, new Comparator<ErrorReport>() {
-                @Override
-                public int compare(ErrorReport report1, ErrorReport report2) {
-                    DateFormat format = new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss", Locale.ENGLISH);
-                    Date date1=null;
-                    Date date2=null;
-                    try {
-                        date1 = format.parse(report1.getPubdate());
-                        date2 = format.parse(report2.getPubdate());
-                    }
-                    catch(ParseException e){
+            sortByDate();
 
-                    }
-
-                    return (date1.compareTo(date2)) * (-1);
-
-                }
-            });
-            objAdapter.notifyDataSetChanged();
-            sortState=1;
-            TextView sortText = (TextView)findViewById(R.id.sortText);
-           sortText.setText("Rapportdatum ▲");
         }
+
         else if(sortState == 1){
             Collections.sort(errorList, new Comparator<ErrorReport>() {
                 @Override
@@ -79,7 +61,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void sortByDate (){
 
+        Collections.sort(errorList, new Comparator<ErrorReport>() {
+            @Override
+            public int compare(ErrorReport report1, ErrorReport report2) {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd,hh:mm:ss", Locale.ENGLISH);
+                Date date1=null;
+                Date date2=null;
+                try {
+                    date1 = format.parse(report1.getPubdate());
+                    date2 = format.parse(report2.getPubdate());
+                }
+                catch(ParseException e){
+
+                }
+
+                return (date1.compareTo(date2)) * (-1);
+
+            }
+        });
+        objAdapter.notifyDataSetChanged();
+        sortState=1;
+        TextView sortText = (TextView)findViewById(R.id.sortText);
+        sortText.setText("Rapportdatum ▲");
+    }
+
+    public void updateList(View view){
+
+        errorList = mydb.getAllReportsDetailed();
+        setAdapterToListview();
+        sortState = sortState%2 +1;
+        sort(view);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ListView busList = new ListView(this.getBaseContext());
         sortButton = (Button) findViewById(R.id.sortButton);
+        updateButton = (Button) findViewById(R.id.updateButton);
         //busId = "Vin_Num_001";
         mydb = new DBHelper(this);
 
@@ -96,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setAdapterToListview();
 
-        sortButton.setOnClickListener(this);
 
+        sortByDate();
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
+
 
 
     }
