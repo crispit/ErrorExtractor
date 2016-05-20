@@ -20,13 +20,24 @@
         android:layout_marginTop="85dp" />
 
     <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uppdatera"
+        android:id="@+id/updateButton"
+        android:layout_alignParentTop="true"
+        android:onClick="updateList"
+        />
+
+    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sortera"
         android:id="@+id/sortButton"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="sort"/>
 
     <TextView
         android:layout_width="wrap_content"
