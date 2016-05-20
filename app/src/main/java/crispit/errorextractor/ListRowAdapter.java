@@ -74,10 +74,10 @@ public class ListRowAdapter extends ArrayAdapter<ErrorReport> {
 
         //here set your color as per position
 
-        if (position%2 == 0) {
-            view.setBackgroundResource(R.drawable.list_bg_even);
-        } else if (position%2 == 1) {
-            view.setBackgroundResource(R.drawable.list_bg_odd);
+        if (er.getStatus().equals("Okommenterad")) {
+            view.setBackgroundResource(R.drawable.list_bg_uncommented);
+        } else if (er.getStatus().equals("Kommenterad")) {
+            view.setBackgroundResource(R.drawable.list_bg_commented);
         }
 
         return view;

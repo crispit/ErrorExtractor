@@ -259,7 +259,8 @@ public class DBHelper extends SQLiteOpenHelper{
                     res.getString(res.getColumnIndex(COLUMN_NAME_COMMENT)),
                     res.getString(res.getColumnIndex(COLUMN_NAME_BUSID)),
                     res.getString(res.getColumnIndex(COLUMN_NAME_DATE)),
-                    res.getInt(res.getColumnIndex(COLUMN_NAME_GRADE)));
+                    res.getInt(res.getColumnIndex(COLUMN_NAME_GRADE)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_STATUS)));
             array_list.add(er);
             res.moveToNext();
         }
@@ -281,7 +282,8 @@ public class DBHelper extends SQLiteOpenHelper{
                     res.getString(res.getColumnIndex(COLUMN_NAME_COMMENT)),
                     res.getString(res.getColumnIndex(COLUMN_NAME_BUSID)),
                     res.getString(res.getColumnIndex(COLUMN_NAME_DATE)),
-                    res.getInt(res.getColumnIndex(COLUMN_NAME_GRADE)));
+                    res.getInt(res.getColumnIndex(COLUMN_NAME_GRADE)),
+                    res.getString(res.getColumnIndex(COLUMN_NAME_STATUS)));
             array_list.add(er);
             res.moveToNext();
         }

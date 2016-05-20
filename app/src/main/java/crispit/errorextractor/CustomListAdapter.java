@@ -59,9 +59,9 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         //here set your color as per position
 
         if (position%2 == 0) {
-            view.setBackgroundResource(R.drawable.list_bg_even);
+            view.setBackgroundResource(R.drawable.list_bg_uncommented);
         } else if (position%2 == 1) {
-            view.setBackgroundResource(R.drawable.list_bg_odd);
+            view.setBackgroundResource(R.drawable.list_bg_commented);
         }
 
         return view;
