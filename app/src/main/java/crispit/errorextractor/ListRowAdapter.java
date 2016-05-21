@@ -61,7 +61,7 @@ public class ListRowAdapter extends ArrayAdapter<ErrorReport> {
         if (holder.errorGrade != null //&& null != er.getGrade()
                 //&& er.getGrade().trim().length() > 0
                 ) {
-            holder.errorGrade.setText("Grade:" + Html.fromHtml(Integer.toString(er.getGrade())));
+            holder.errorGrade.setText("Gradering:" + Html.fromHtml(Integer.toString(er.getGrade())));
         }
         if (holder.errorComment != null && null != er.getComment()
                 && er.getComment().trim().length() > 0) {
