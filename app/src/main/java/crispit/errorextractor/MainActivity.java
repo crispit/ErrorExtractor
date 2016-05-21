@@ -1,5 +1,6 @@
 package crispit.errorextractor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity{
     Button updateButton;
     DBHelper mydb;
     private ArrayList<ErrorReport> errorList;
-    String busId;
     ListRowAdapter objAdapter;
     int sortState = 1;
 
@@ -99,11 +99,25 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView busList = new ListView(this.getBaseContext());
         sortButton = (Button) findViewById(R.id.sortButton);
         updateButton = (Button) findViewById(R.id.updateButton);
-        //busId = "Vin_Num_001";
-        mydb = new DBHelper(this);
+
+
+        //Setting the context for the database to the shared database
+        Context sharedContext;
+        try {
+            sharedContext = this.createPackageContext("com.example.fredrikhansson.komigennuraa", Context.CONTEXT_INCLUDE_CODE);
+            if (sharedContext == null) {
+                return;
+            }
+        } catch (Exception e) {
+            String error = e.getMessage();
+            System.out.print(error);
+            return;
+        }
+
+        mydb = new DBHelper(sharedContext);
+
 
         listView = (ListView) findViewById(R.id.busList);
 
@@ -111,9 +125,7 @@ public class MainActivity extends AppCompatActivity{
 
         setAdapterToListview();
 
-
         sortByDate();
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -1,5 +1,6 @@
 package crispit.errorextractor;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,21 @@ public class DetailedErrorReport extends AppCompatActivity {
 
         String errorId = getIntent().getStringExtra("errorId");
 
-        mydb = new DBHelper(this);
+        //Setting the context for the database to the shared database
+        Context sharedContext;
+        try {
+            sharedContext = this.createPackageContext("com.example.fredrikhansson.komigennuraa", Context.CONTEXT_INCLUDE_CODE);
+            if (sharedContext == null) {
+                return;
+            }
+        } catch (Exception e) {
+            String error = e.getMessage();
+            System.out.print(error);
+            return;
+        }
+
+        mydb = new DBHelper(sharedContext);
+
         detailedList = new ArrayList<>();
 
         Cursor res = mydb.getData(errorId);

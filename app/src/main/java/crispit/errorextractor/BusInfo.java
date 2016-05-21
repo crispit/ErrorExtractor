@@ -1,5 +1,6 @@
 package crispit.errorextractor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +15,6 @@ import java.util.ArrayList;
  */
 public class BusInfo extends AppCompatActivity {
 
-    //Sortera efter gradering, allvarligast först
-
     ArrayList<ErrorReport> errorList;
     ListView listView;
     DBHelper mydb;
@@ -27,7 +26,20 @@ public class BusInfo extends AppCompatActivity {
 
         String busId = getIntent().getStringExtra("busId");
 
-        mydb = new DBHelper(this);
+        //Setting the context for the database to the shared database
+        Context sharedContext;
+        try {
+            sharedContext = this.createPackageContext("com.example.fredrikhansson.komigennuraa", Context.CONTEXT_INCLUDE_CODE);
+            if (sharedContext == null) {
+                return;
+            }
+        } catch (Exception e) {
+            String error = e.getMessage();
+            System.out.print(error);
+            return;
+        }
+
+        mydb = new DBHelper(sharedContext);
         errorList = mydb.getBusReports(busId);
 
         listView = (ListView) findViewById(R.id.businfoview);
