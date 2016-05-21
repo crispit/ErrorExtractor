@@ -69,7 +69,7 @@ public class ListRowAdapter extends ArrayAdapter<ErrorReport> {
         }
         if (holder.errorDate != null && null != er.getPubdate()
                 && er.getPubdate().trim().length() > 0) {
-            holder.errorDate.setText(Html.fromHtml(er.getPubdate()));
+            holder.errorDate.setText("Tidpunkt: \n" +Html.fromHtml(er.getPubdate()));
         }
 
         //here set your color as per position
